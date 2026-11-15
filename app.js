@@ -1,7 +1,8 @@
 (() => {
   'use strict';
 
-  const CFG = Object.assign({ DOC_URL: '', CAT_NAME: 'Mochi' }, window.QUEST_CONFIG || {});
+  const CFG = Object.assign({ DOC_URL: '', NAME: 'Azhar', CAT_NAME: 'Mochi' }, window.QUEST_CONFIG || {});
+  const NAME = CFG.NAME || 'friend';
   const CAT = CFG.CAT_NAME || 'Mochi';
   const NS = 'http://www.w3.org/2000/svg';
   const ART = window.ART;
@@ -373,7 +374,7 @@
     }
   }
 
-  const PET_LINES = ['Meow! 🐾', 'Pick a stop!', 'Purrr…', 'You got this!', 'Let’s explore!', 'Mrrp? 💕'];
+  const PET_LINES = ['Meow! 🐾', 'Pick a stop!', 'Purrr…', `Go ${NAME}! 💕`, 'Let’s explore!', 'Mrrp? 💕', `${NAME}, you got this!`];
   function petCat() {
     if (busy) return;
     hearts(5);
@@ -456,7 +457,7 @@
         <p>${esc(l.blurb)}</p>
         <div class="reward got">🌟 Sticker collected! You earned ${l.points} points here.</div>
         ${saved ? `<details class="saved"><summary>📜 See what you wrote</summary><pre>${esc(saved)}</pre></details>` : ''}
-        <div class="actions">${docLink()}<button class="btn mint" id="walk-btn" type="button">🐾 Visit with ${esc(CAT)}</button></div>`, 'sheet');
+        <div class="actions">${docLink()}<button class="btn mint" id="walk-btn" type="button">🐾 Visit together</button></div>`, 'sheet');
       $('#walk-btn').addEventListener('click', async () => {
         closeCard();
         await walkTo(id);
@@ -555,7 +556,7 @@
     await openCard(`
       <div class="big-emoji">${l.emoji}</div>
       <h2>Sticker unlocked!</h2>
-      <p>${esc(CAT)} made it to <b>${esc(l.stop)}</b>.</p>
+      <p>${esc(NAME)} and ${esc(CAT)} made it to <b>${esc(l.stop)}</b>!</p>
       <div class="plus-points">+${l.points} ⭐</div>
       <p class="muted">${doneCount()} of ${LEVELS.length} stops finished</p>
       <div class="actions"><button class="btn primary" data-close type="button">Yay! 🎉</button></div>`, 'modal');
@@ -571,7 +572,7 @@
     await openCard(`
       <div class="big-emoji">🎓</div>
       <h2>Quest complete!</h2>
-      <p>You explored colleges in <b>4 countries</b>, dreamed up <b>5 careers</b>, and made a plan for what comes next. ${esc(CAT)} is so proud of you! 💕</p>
+      <p>${esc(NAME)}, you explored colleges in <b>4 countries</b>, dreamed up <b>5 careers</b>, and made a plan for what comes next. ${esc(CAT)} is so proud of you! 💕</p>
       <div class="plus-points">${totalPoints().toLocaleString()} ⭐ total</div>
       <p class="hint">Tip from the workbook: redo it in 6 months and see what changed!</p>
       <div class="actions"><button class="btn primary" data-close type="button">Hooray! 🎉</button></div>`, 'modal');
@@ -583,7 +584,7 @@
     openCard(`
       <div class="big-emoji">🙀</div>
       <h2>Start over?</h2>
-      <p>This erases all your points, stickers, and saved answers on this website, and ${esc(CAT)} goes back to the start.</p>
+      <p>This erases all your points, stickers, and saved answers on this website, and you and ${esc(CAT)} go back to the start.</p>
       <p class="muted">Your Google Doc won’t be changed.</p>
       <div class="actions">
         <button class="btn" data-close type="button">Keep my progress</button>
@@ -606,7 +607,9 @@
   // --------------------------------------------------------------- start
   function init() {
     $('#open-doc').href = CFG.DOC_URL || '#';
-    $('#find-cat').textContent = `🐱 Find ${CAT}`;
+    $('#find-cat').textContent = '🐱 Find us';
+    $('#brand-name').textContent = NAME;
+    document.title = `${NAME}’s College Quest`;
     $('#find-cat').addEventListener('click', () => { scrollToCat(true); setTimeout(petCat, 450); });
     $('#reset-btn').addEventListener('click', confirmReset);
     $('#words-btn').addEventListener('click', () => openCard(`
@@ -621,7 +624,7 @@
     catL = stopLen[at];
     placeCat(catL);
     requestAnimationFrame(() => scrollToCat(false));
-    if (doneCount() === 0) setTimeout(() => say(`Hi! I’m ${CAT} 🐾`, 3200), 700);
+    if (doneCount() === 0) setTimeout(() => say(`Hi ${NAME}! I’m ${CAT} 🐾`, 3400), 700);
   }
 
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(init, init);

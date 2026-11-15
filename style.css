@@ -59,6 +59,7 @@ h1, h2, h3, .brand, .btn, .pill, .dock-btn { font-family: 'Fredoka', 'Nunito', s
 
 .brand { display: flex; align-items: center; gap: 6px; font-size: 21px; font-weight: 700; white-space: nowrap; }
 .brand-paw { display: inline-block; animation: wiggle 3s ease-in-out infinite; }
+@media (max-width: 440px) { .brand-long { display: none; } }
 
 .stats { display: flex; gap: 8px; }
 
@@ -167,6 +168,11 @@ h1, h2, h3, .brand, .btn, .pill, .dock-btn { font-family: 'Fredoka', 'Nunito', s
 #cat .cat-head { transform-box: fill-box; transform-origin: 50% 90%; }
 
 #cat.walking .cat-bob { animation: hop .34s ease-in-out infinite; }
+#cat .girl-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: breathe 3s ease-in-out infinite; animation-delay: -1s; }
+#cat.walking .girl-bob { animation: hop .4s ease-in-out infinite; }
+#cat.walking .girl .leg-a { animation: step .4s ease-in-out infinite; }
+#cat.walking .girl .leg-b { animation: step .4s ease-in-out infinite reverse; }
+#cat.happy .girl-bob { animation: jump .55s ease-out 3; animation-delay: .1s; }
 #cat.walking .leg-a { animation: step .34s ease-in-out infinite; }
 #cat.walking .leg-b { animation: step .34s ease-in-out infinite reverse; }
 #cat.walking .tail { animation-duration: .5s; }

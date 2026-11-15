@@ -203,6 +203,38 @@
   ART.cat = `
   <g id="cat">
     <g class="cat-flip">
+      <g class="girl" transform="translate(-36 -2)">
+        <g class="girl-bob">
+          <g stroke="#5B4B6B" stroke-width="5">
+            <circle cx="0" cy="-75" r="11"/><circle cx="-10" cy="-72" r="10"/><circle cx="10" cy="-72" r="10"/>
+            <circle cx="-15" cy="-62" r="9"/><circle cx="15" cy="-62" r="9"/>
+            <circle cx="-15" cy="-51" r="8"/><circle cx="15" cy="-51" r="8"/>
+            <circle cx="-12" cy="-42" r="6.5"/><circle cx="12" cy="-42" r="6.5"/>
+          </g>
+          <g fill="#4A2C21">
+            <circle cx="0" cy="-75" r="11"/><circle cx="-10" cy="-72" r="10"/><circle cx="10" cy="-72" r="10"/>
+            <circle cx="-15" cy="-62" r="9"/><circle cx="15" cy="-62" r="9"/>
+            <circle cx="-15" cy="-51" r="8"/><circle cx="15" cy="-51" r="8"/>
+            <circle cx="-12" cy="-42" r="6.5"/><circle cx="12" cy="-42" r="6.5"/>
+          </g>
+          <path d="M-20 -60 a5 5 0 0 1 4 -6 M18 -56 a5 5 0 0 0 -3 -6 M-18 -47 a4 4 0 0 1 4 -4 M16 -44 a4 4 0 0 0 -3 -5 M-4 -82 a5 5 0 0 1 6 -1" stroke="#7A4E3B" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <g class="leg leg-b"><rect class="o" x="-7.5" y="-15" width="6" height="15" rx="3" fill="#F6DAC4"/><ellipse class="o" cx="-4.5" cy="0" rx="4.5" ry="2.6" fill="#F59AB8" stroke-width="2"/></g>
+          <g class="leg leg-a"><rect class="o" x="1.5" y="-15" width="6" height="15" rx="3" fill="#F6DAC4"/><ellipse class="o" cx="4.5" cy="0" rx="4.5" ry="2.6" fill="#F59AB8" stroke-width="2"/></g>
+          <rect class="o" x="-15.5" y="-38" width="6" height="15" rx="3" fill="#F6DAC4" transform="rotate(14 -12.5 -38)"/>
+          <rect class="o" x="9.5" y="-38" width="6" height="15" rx="3" fill="#F6DAC4" transform="rotate(-14 12.5 -38)"/>
+          <path class="o" d="M-9 -41 Q0 -44 9 -41 L15 -13 Q0 -10 -15 -13 Z" fill="#DCCBFF"/>
+          <path d="M-12 -18 Q0 -15.5 12 -18" stroke="#B39CF0" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="o" d="M-6 -41 L0 -36 L6 -41" fill="#FFFFFF" stroke-width="2"/>
+          <path d="M0 -29 c-1 -2.2 -4.6 -1.6 -4 1 l4 3.4 l4 -3.4 c.6 -2.6 -3 -3.2 -4 -1z" fill="#F59AB8"/>
+          <ellipse class="o" cx="0" cy="-58" rx="13.5" ry="13" fill="#F6DAC4"/>
+          <path class="o" d="M-14 -60 C-16 -74 -5 -79 1 -75 C7 -79 17 -73 14 -60 C12 -66 8 -68 5 -64 C3 -69 -3 -69 -4 -64 C-7 -68 -12 -66 -14 -60Z" fill="#4A2C21"/>
+          <path d="M-8 -71 a3.5 3.5 0 0 1 4 -2 M5 -72 a3.5 3.5 0 0 1 4 2" stroke="#7A4E3B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <g transform="translate(11 -70)"><path class="o" d="M0 0 L-6 -4 L-6 4 Z M0 0 L6 -4 L6 4 Z" fill="#FFC8D9" stroke-width="1.8"/><circle class="o" r="2" fill="#F59AB8" stroke-width="1.5"/></g>
+          <g class="eyes"><ellipse cx="-5" cy="-56" rx="2.2" ry="2.9" fill="#5B4B6B"/><ellipse cx="5" cy="-56" rx="2.2" ry="2.9" fill="#5B4B6B"/><circle cx="-4.2" cy="-57.3" r=".9" fill="#fff"/><circle cx="5.8" cy="-57.3" r=".9" fill="#fff"/></g>
+          <ellipse cx="-9" cy="-51.5" rx="2.8" ry="1.7" fill="#F59AB8" opacity=".5"/><ellipse cx="9" cy="-51.5" rx="2.8" ry="1.7" fill="#F59AB8" opacity=".5"/>
+          <path d="M-2.6 -51 q2.6 2.6 5.2 0" stroke="#5B4B6B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
       <ellipse class="cat-shadow" cx="0" cy="1" rx="19" ry="4" fill="${C.ink}" opacity=".14"/>
       <g class="cat-bob">
         <g class="tail"><path d="M-17 -16 C-31 -18 -34 -34 -25 -41" stroke="${C.ink}" stroke-width="9.5" fill="none" stroke-linecap="round"/><path d="M-17 -16 C-31 -18 -34 -34 -25 -41" stroke="${C.peach}" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-30 -30 l4 1 M-29 -36 l4 2" stroke="${C.peachD}" stroke-width="2" stroke-linecap="round"/></g>
@@ -230,7 +262,7 @@
         <circle class="o" cx="1" cy="-26" r="3" fill="${C.butterD}" stroke-width="1.5"/>
       </g>
     </g>
-    <g class="cat-bubble" transform="translate(0 -74)">
+    <g class="cat-bubble" transform="translate(0 -98)">
       <rect class="o bubble-box" x="-30" y="-24" width="60" height="24" rx="12" fill="${C.white}" stroke-width="2"/>
       <path class="o" d="M-5 -1 L0 7 L5 -1" fill="${C.white}" stroke-width="2"/>
       <rect x="-4" y="-4" width="8" height="5" fill="${C.white}"/>
