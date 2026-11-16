@@ -77,6 +77,8 @@ h1, h2, h3, .brand, .btn, .pill, .dock-btn { font-family: 'Fredoka', 'Nunito', s
 }
 .pill-stars { background: var(--butter); }
 .pill-stickers { background: var(--pink); }
+button.pill { color: var(--ink); cursor: pointer; font-family: 'Fredoka', 'Nunito', system-ui, sans-serif; }
+button.pill:active { transform: translateY(2px); box-shadow: 0 .5px 0 var(--ink); }
 .pill.bump { animation: bump .5s ease; }
 
 .icon-btn {
@@ -400,6 +402,67 @@ h1, h2, h3, .brand, .btn, .pill, .dock-btn { font-family: 'Fredoka', 'Nunito', s
 .missing li { padding: 4px 0 4px 24px; position: relative; line-height: 1.35; }
 .missing li::before { content: '🐾'; position: absolute; left: 0; top: 4px; font-size: 13px; }
 .hint { font-size: 14px; color: var(--ink-soft); }
+
+.book-summary { margin: 14px 0 4px; text-align: center; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 16px; }
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 10px;
+  margin: 16px 0 6px;
+  padding: 16px 10px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle, rgba(179, 156, 240, .18) 1.5px, transparent 1.6px) 0 0 / 16px 16px,
+    var(--lav-l);
+  border: 2.5px dashed var(--lav);
+}
+.stk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.stk-face {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  font-size: 40px;
+  line-height: 1;
+  transition: transform .2s;
+}
+.stk.got .stk-face {
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  box-shadow: 0 0 0 5px #fff, 0 0 0 7.5px var(--ink), 0 6px 0 2px rgba(91, 75, 107, .25);
+  margin: 7px 0 4px;
+}
+.stk.got:nth-child(3n+1) .stk-face { transform: rotate(-8deg); background: #FFF1F5; }
+.stk.got:nth-child(3n+2) .stk-face { transform: rotate(5deg); background: #EEFBF4; }
+.stk.got:nth-child(3n) .stk-face { transform: rotate(-3deg); background: #FFF9E0; }
+.stk.got:hover .stk-face, .stk.got:focus-visible .stk-face { transform: rotate(0) scale(1.08); }
+.stk.locked .stk-face {
+  margin: 7px 0 4px;
+  border: 3px dashed #CFC4DD;
+  background: rgba(255, 255, 255, .6);
+  color: #B9AECA;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+}
+.stk.locked:hover .stk-face, .stk.locked:focus-visible .stk-face { border-color: var(--lav-d); color: var(--lav-d); }
+.stk-name { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.15; text-align: center; }
+.stk-meta { font-size: 11.5px; color: var(--ink-soft); text-align: center; margin-top: -3px; }
+.stk.locked .stk-name { color: var(--ink-soft); }
+.stk.special.got .stk-face { background: var(--butter); animation: floaty 3s ease-in-out infinite; }
 
 .words { list-style: none; margin: 12px 0 0; padding: 0; text-align: left; }
 .words li { padding: 10px 12px; border-radius: 14px; margin-bottom: 8px; font-size: 14.5px; line-height: 1.4; }

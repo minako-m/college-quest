@@ -558,7 +558,7 @@
       <h2>Sticker unlocked!</h2>
       <p>${esc(NAME)} and ${esc(CAT)} made it to <b>${esc(l.stop)}</b>!</p>
       <div class="plus-points">+${l.points} ⭐</div>
-      <p class="muted">${doneCount()} of ${LEVELS.length} stops finished</p>
+      <p class="muted">${doneCount()} of ${LEVELS.length} stickers in your sticker book 🎀</p>
       <div class="actions"><button class="btn primary" data-close type="button">Yay! 🎉</button></div>`, 'modal');
     if (doneCount() === LEVELS.length) finale();
   }
@@ -576,6 +576,51 @@
       <div class="plus-points">${totalPoints().toLocaleString()} ⭐ total</div>
       <p class="hint">Tip from the workbook: redo it in 6 months and see what changed!</p>
       <div class="actions"><button class="btn primary" data-close type="button">Hooray! 🎉</button></div>`, 'modal');
+  }
+
+  // --------------------------------------------------------------- sticker book
+  function scrollToStop(id) {
+    const r = stopEls[id].getBoundingClientRect();
+    window.scrollTo({ top: Math.max(0, window.scrollY + r.top + r.height / 2 - innerHeight * 0.5), behavior: 'smooth' });
+    const g = stopEls[id];
+    g.classList.remove('just-done'); void g.getBoundingClientRect(); g.classList.add('just-done');
+    setTimeout(() => g.classList.remove('just-done'), 1400);
+  }
+
+  function openStickerBook() {
+    if (busy) return;
+    const fmt = iso => { try { return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return ''; } };
+    const all = doneCount() === LEVELS.length;
+    const items = LEVELS.map(l => {
+      const c = progress.claimed[l.id];
+      return c
+        ? `<button class="stk got" type="button" data-stop="${l.id}" aria-label="${esc(l.stop)} sticker, collected">
+             <span class="stk-face">${l.emoji}</span><span class="stk-name">${esc(l.stop)}</span>
+             <span class="stk-meta">${fmt(c.at)} · ${l.points} ⭐</span></button>`
+        : `<button class="stk locked" type="button" data-stop="${l.id}" aria-label="${esc(l.stop)} sticker, not collected yet">
+             <span class="stk-face">?</span><span class="stk-name">${esc(l.stop)}</span>
+             <span class="stk-meta">${l.points} ⭐</span></button>`;
+    });
+    items.push(all
+      ? `<button class="stk got special" type="button" data-finale aria-label="Quest Champion sticker, collected">
+           <span class="stk-face">🎓</span><span class="stk-name">Quest Champion</span><span class="stk-meta">All 10 stops!</span></button>`
+      : `<button class="stk locked special" type="button" aria-label="Secret sticker: collect all 10 to unlock" disabled>
+           <span class="stk-face">★</span><span class="stk-name">Secret sticker</span><span class="stk-meta">Collect all 10</span></button>`);
+    openCard(`
+      ${sheetHead('🎀', `${NAME}’s sticker book`, 'One sticker for every stop')}
+      <p class="book-summary">${doneCount()} of ${LEVELS.length} collected · ${totalPoints().toLocaleString()} ⭐</p>
+      <div class="sticker-grid">${items.join('')}</div>
+      <p class="hint" style="text-align:center">Tap a sticker to visit its stop on the map.</p>`, 'sheet');
+    card.querySelectorAll('[data-stop]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.stop;
+      closeCard();
+      setTimeout(() => {
+        scrollToStop(id);
+        if (!isDone(id)) setTimeout(() => openStop(id), 700);
+      }, 280);
+    }));
+    const champ = card.querySelector('[data-finale]');
+    if (champ) champ.addEventListener('click', () => { closeCard(); setTimeout(finale, 280); });
   }
 
   // --------------------------------------------------------------- start over
@@ -612,6 +657,7 @@
     document.title = `${NAME}’s College Quest`;
     $('#find-cat').addEventListener('click', () => { scrollToCat(true); setTimeout(petCat, 450); });
     $('#reset-btn').addEventListener('click', confirmReset);
+    $('#sticker-pill').addEventListener('click', openStickerBook);
     $('#words-btn').addEventListener('click', () => openCard(`
       ${sheetHead('📖', 'Words to know', 'From your workbook')}
       <ul class="words">${WORDS.map(([w, m]) => `<li><b>${esc(w)}</b>${esc(m)}</li>`).join('')}</ul>`, 'sheet'));
